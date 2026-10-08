@@ -7,6 +7,9 @@
 **/*.tar.gz
 **/playground
 **/wandb
+**/output_logs
+**/slurm_logs
+**/datasets/acsl/*.parquet
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
