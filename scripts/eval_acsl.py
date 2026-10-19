@@ -11,7 +11,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 import pandas as pd
 
-sys.path.append("/leonardo_work/AIFAC_F02_352/anna/SDPO_formai/src/code/utils")
+sys.path.append("/leonardo_work/AIFAC_F02_1251/SDPO_formai/src/code/utils")
 from reward_functions import (COMPILE_FLOOR, PROOF_WEIGHT, TEST_WEIGHT, extract_code_from_response,
                               frama_c_proof_fraction, response_contains_acsl_annotation,
                               run_frama_c_on_code, run_function_tests)

@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=sdpo-verl
-#SBATCH --account=AIFAC_F02_352
+#SBATCH --account=AIFAC_F02_1251
 #SBATCH --partition=boost_usr_prod
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
@@ -8,12 +8,12 @@
 #SBATCH --cpus-per-task=32
 #SBATCH --mem=480G
 #SBATCH --time=06:00:00
-#SBATCH --output=/leonardo_work/AIFAC_F02_352/anna/SDPO_acsl_rl/slurm_logs/%x-%j.out
+#SBATCH --output=/leonardo_work/AIFAC_F02_1251/SDPO_acsl_rl/slurm_logs/%x-%j.out
 # Usage: sbatch run_acsl.sh acsl|acsl_grpo [hydra overrides]
 # Evaluates the base model before training (once per model) and the last checkpoint after. EVAL=0 skips both.
 set -euo pipefail
 
-BASE=/leonardo_work/AIFAC_F02_352/anna
+BASE=/leonardo_work/AIFAC_F02_1251
 CONFIG=${1:?config name}; shift
 export EXPERIMENT=${EXPERIMENT:-"${CONFIG}_$(date +%Y%m%d)_${SLURM_JOB_ID:-local}"}
 export TASK=datasets/acsl USER=${USER:-$(whoami)}

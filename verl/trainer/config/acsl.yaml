@@ -3,7 +3,7 @@ defaults:
   - _self_
 
 vars:
-  dir: /leonardo_work/AIFAC_F02_352/anna/SDPO_acsl_rl
+  dir: /leonardo_work/AIFAC_F02_1251/SDPO_acsl_rl
   log_dir: ${vars.dir}/output_logs
   ckpt_dir: ${vars.dir}/checkpoints
 
@@ -17,7 +17,7 @@ data:
 
 actor_rollout_ref:
   model:
-    path: /leonardo_work/AIFAC_F02_352/anna/models/Qwen2.5-Coder-3B-Instruct
+    path: /leonardo_work/AIFAC_F02_1251/models/Qwen2.5-Coder-3B-Instruct
     enable_gradient_checkpointing: True
   actor:
     ppo_mini_batch_size: 1

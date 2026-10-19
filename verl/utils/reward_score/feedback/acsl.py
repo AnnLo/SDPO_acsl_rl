@@ -3,7 +3,7 @@ import os
 import sys
 from concurrent.futures import ThreadPoolExecutor
 
-sys.path.append("/leonardo_work/AIFAC_F02_352/anna/SDPO_formai/src/code/utils")
+sys.path.append("/leonardo_work/AIFAC_F02_1251/SDPO_formai/src/code/utils")
 from reward_functions import score_with_feedback
 
 WORKERS = max(1, int(os.environ.get("SLURM_CPUS_PER_TASK", "16")) // 2)
