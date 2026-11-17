@@ -58,7 +58,7 @@ echo "task: $TASK   eval sets: $SETS   experiment: $EXPERIMENT"
 # prompt modes get their own base result)
 if [ "$EVAL" = 1 ]; then
   for SET in $SETS; do
-    BASE_RESULT="$RESULTS/base_$(basename "$MODEL")_$(basename "$SET").json"
+    BASE_RESULT="$RESULTS/base_$(basename "$MODEL")_$(basename "$SET")_n$EVAL_N.json"
     [ -f "$BASE_RESULT" ] || $EVAL_ENV python scripts/eval_acsl.py run --model "$MODEL" --data "$SET/test.parquet" \
       --n "$EVAL_N" --out "$BASE_RESULT"
   done
@@ -75,7 +75,7 @@ if [ "$EVAL" = 1 ] && [ -f "$CKPT/latest_checkpointed_iteration.txt" ]; then
     --local_dir "$CKPT/global_step_$STEP/actor" --target_dir "$HF"
   for SET in $SETS; do
     NAME=$(basename "$SET")
-    BASE_RESULT="$RESULTS/base_$(basename "$MODEL")_$NAME.json"
+    BASE_RESULT="$RESULTS/base_$(basename "$MODEL")_${NAME}_n$EVAL_N.json"
     TRAINED="$RESULTS/${EXPERIMENT}_step${STEP}_$NAME.json"
     $EVAL_ENV python scripts/eval_acsl.py run --model "$HF" --tokenizer "$MODEL" --data "$SET/test.parquet" \
       --n "$EVAL_N" --out "$TRAINED"
