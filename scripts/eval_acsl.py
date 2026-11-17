@@ -11,12 +11,11 @@ from concurrent.futures import ThreadPoolExecutor
 
 import pandas as pd
 
-sys.path.append("/leonardo_work/AIFAC_F02_1251/SDPO_formai/src/code/utils")
-from reward_functions import (COMPILE_FLOOR, PROOF_WEIGHT, TEST_WEIGHT, extract_code_from_response,
+from verl.utils.reward_score.feedback.reward_functions import (COMPILE_FLOOR, PROOF_WEIGHT, TEST_WEIGHT, extract_code_from_response,
                               frama_c_proof_fraction, response_contains_acsl_annotation,
                               run_frama_c_on_code, run_function_tests)
 
-METRICS = ["compiles", "all_tests", "acsl", "proof", "solved", "reward"]
+METRICS = ["compiles", "all_tests", "acsl", "proof", "solved", "reward", "reward_no_verify"]
 WORKERS = max(1, int(os.environ.get("SLURM_CPUS_PER_TASK", "16")) // 2)
 
 
@@ -37,6 +36,8 @@ def evaluate_response(response: str, test_main: str, num_tests: int, language: s
         "proof": proof,
         "solved": float(status == "ok" and proof >= 0.999),
         "reward": compiles * (COMPILE_FLOOR + TEST_WEIGHT * pass_rate) + PROOF_WEIGHT * proof,
+        # the training reward without verification (reward_kwargs.verify=False, acsl_weight=0)
+        "reward_no_verify": compiles * (COMPILE_FLOOR + TEST_WEIGHT * pass_rate),
     }
 
 
